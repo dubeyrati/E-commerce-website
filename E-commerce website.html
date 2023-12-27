@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-commerce Product Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: black;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 20px;
+    }
+
+    .product {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin: 10px;
+      padding: 15px;
+      max-width: 250px;
+    }
+
+    .product img {
+      max-width: 100%;
+      height: 250px;
+    }
+
+    .cart-container {
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: #fff;
+      padding: 15px;
+      border-left: 1px solid #ddd;
+    }
+
+    .cart-container h2 {
+      font-size: 1.5rem;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>E-commerce Store</h1>
+  </header>
+
+  <img width="100%" src = "banner2.jpg">
+
+  <div class="product-container">
+    <div class="product" id="product1">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/51dzWHmRYrL._SY695_.jpg" alt="Product 1">
+      <h3>Puma Unisex-Adult Rider Fv Future Vintage Casual Shoe</h3>
+      <p>Material type Nylon, Suede <br>
+        Heel type Flat<br>
+        Water resistance level - Not Water Resistant<br>
+        Sole material Rubber <br>
+      <p>₹4,049</p>
+      <button onclick="addToCart('Puma Shoe', 4049)">Add to Cart</button>
+    </div>
+
+    <div class="product" id="product2">
+        <img src="https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/61WFLydWqpL._SX679_.jpg" alt="Product 1">
+        <h3>boAt Rockerz 551ANC Hybrid Active Noise Cancellation Headphones </h3>
+        <p>Brand	boAt <br>
+            Model Name	Rockerz 551ANC <br>
+            Colour	Sage Green<br>
+            Form Factor	On Ear<br>
+            Connectivity Technology	Bluetooth</p>
+        <p>₹2,041</p>
+        <button onclick="addToCart('Headphones', 2041)">Add to Cart</button>
+      </div>
+
+      <div class="product" id="product3">
+        <img src="https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/41QILblSE7L._SX300_SY300_QL70_FMwebp_.jpg" alt="Product 1">
+        <h3>Sony Srs-Xb13 Wireless Extra Bass Portable Bluetooth Speaker</h3>
+        <p>
+            Brand	Sony <br>
+            Model Name	SRS-XB <br>
+            Speaker Type	Bookshelf <br>
+            Special Feature	Waterproof; Dustproof; Extra Bass</p>
+        <p>₹6,523</p>
+        <button onclick="addToCart('Speaker', 6523)">Add to Cart</button>
+      </div>
+
+      <div class="product" id="product1">
+        <img src="https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71gWn2PzLrL._SX679_.jpg" alt="Product 1">
+        <h3>boAt Newly Launched Enigma Z40 Smart Watch with 1.32" HD Display</h3>
+        <p>Brand	boAt <br>
+            Colour	Metal Black<br>
+            Shape	Round<br>
+            Band Colour	black<br>
+            Connectivity Technology	Bluetooth</p>
+        <p>₹2,560</p>
+        <button onclick="addToCart('Watch', 2560)">Add to Cart</button>
+      </div>
+
+    <!-- Repeat similar structure for other products -->
+
+  </div>
+
+  <div class="cart-container">
+    <h2>Shopping Cart</h2>
+    <div id="cart"></div>
+    <button onclick="viewCart()">View Cart</button>
+  </div>
+
+  <script>
+    let cart = [];
+
+    function addToCart(productName, price) {
+      cart.push({ productName, price });
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartContainer = document.getElementById('cart');
+      cartContainer.innerHTML = '';
+
+      cart.forEach(item => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `<span>${item.productName}</span><span>$${item.price.toFixed(2)}</span>`;
+        cartContainer.appendChild(cartItem);
+      });
+    }
+
+    function viewCart() {
+      alert('Items in Cart:\n' + cart.map(item => `${item.productName} - $${item.price.toFixed(2)}`).join('\n'));
+    }
+  </script>
+
+</body>
+</html>
